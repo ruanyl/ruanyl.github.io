@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Continuous Integration Your Hexo Blog With Travis CI | Bigruan Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Everything works fine after migrating my blog to hexo, it’s just not cool that everytime I have to run hexo deploy to publish my posts.
+Cool boy uses Travis-CI, right?
+Step 1 - generate a personal acc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Continuous Integration Your Hexo Blog With Travis CI">
+<meta property="og:url" content="http://blog.bigruan.com/2015-03-09-Continuous-Integration-Your-Hexo-Blog-With-TravisCI/index.html">
+<meta property="og:site_name" content="Bigruan Blog">
+<meta property="og:description" content="Everything works fine after migrating my blog to hexo, it’s just not cool that everytime I have to run hexo deploy to publish my posts.
+Cool boy uses Travis-CI, right?
+Step 1 - generate a personal acc">
+<meta property="og:updated_time" content="2016-02-04T19:27:47.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Continuous Integration Your Hexo Blog With Travis CI">
+<meta name="twitter:description" content="Everything works fine after migrating my blog to hexo, it’s just not cool that everytime I have to run hexo deploy to publish my posts.
+Cool boy uses Travis-CI, right?
+Step 1 - generate a personal acc">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> 
+   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> 
+  <!--<link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">-->
+  <!--<link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>-->
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-61404022-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Bigruan Blog</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about/index.html">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.bigruan.com"></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/ruanyl" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.bigruan.com"></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Others/">Others</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015-12-14-Use-browserify-with-legacy-libs/">Use browserify with legacy libs</a>
+          </li>
+        
+          <li>
+            <a href="/2015-10-06-Continuous-deploy-your-private-repo-from-github/">Continuous Deploy Your Private Repo From Github</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-14-Write-shippable-react-component-with-css-module/">Write React Component with CSS Module</a>
+          </li>
+        
+          <li>
+            <a href="/2015-07-14-A-Git-Workflow-for-Selective-Merge-Deployment/">A Git Workflow for Selective Merge Deployment</a>
+          </li>
+        
+          <li>
+            <a href="/2015-03-28-The-Secret-Of-Character-Encoding-And-Character-Set/">The Secret of Character Encoding and Character Set</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Css/">Css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Css-Html/">Css,Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django-Python-Apache/">Django Python Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encoding/">Encoding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegExp/">RegExp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/">Zsh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browserify/">browserify</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Css-Html/" style="font-size: 10px;">Css,Html</a> <a href="/tags/Django-Python-Apache/" style="font-size: 10px;">Django Python Apache</a> <a href="/tags/Encoding/" style="font-size: 10px;">Encoding</a> <a href="/tags/Git/" style="font-size: 16.67px;">Git</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/Zsh/" style="font-size: 10px;">Zsh</a> <a href="/tags/browserify/" style="font-size: 10px;">browserify</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-Continuous-Integration-Your-Hexo-Blog-With-TravisCI" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-03-09-Continuous-Integration-Your-Hexo-Blog-With-TravisCI/" class="article-date">
+  <time datetime="2015-03-09T09:47:20.000Z" itemprop="datePublished">2015-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Continuous Integration Your Hexo Blog With Travis CI
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Everything works fine after migrating my blog to <a href="http://hexo.io" target="_blank" rel="external">hexo</a>, it’s just not cool that everytime I have to run <em>hexo deploy</em> to publish my posts.
+Cool boy uses Travis-CI, right?</p>
+<h3 id="Step_1_-_generate_a_personal_access_token_at_Github"><a href="#Step_1_-_generate_a_personal_access_token_at_Github" class="headerlink" title="Step 1 - generate a personal access token at Github"></a>Step 1 - generate a personal access token at Github</h3><p>Go to <a href="https://github.com/settings/applications#personal-access-tokens" target="_blank" rel="external">https://github.com/settings/applications#personal-access-tokens</a> and Generate new token</p>
+<h3 id="Step_2_-_add_an_environment_variable_to_your_Travis-CI_project"><a href="#Step_2_-_add_an_environment_variable_to_your_Travis-CI_project" class="headerlink" title="Step 2 - add an environment variable to your Travis-CI project."></a>Step 2 - add an environment variable to your Travis-CI project.</h3><ol>
+<li>Go to project Settings and choose Environment Variables</li>
+<li>Variable Name: DEPLOY_REPO</li>
+<li>Variable Value: <a href="https://{github_access_token}@github.com/{github_username}/{repository_name}.git" target="_blank" rel="external">https://{github_access_token}@github.com/{github_username}/{repository_name}.git</a> (for example: <a href="https://8260b82839xx2d19387a51bafca4d5425da7@github.com/ruanyl/ruanyl.github.io.git" target="_blank" rel="external">https://8260b82839xx2d19387a51bafca4d5425da7@github.com/ruanyl/ruanyl.github.io.git</a>)</li>
+</ol>
+<h3 id="Step_3_-_edit_-travis-yml_file"><a href="#Step_3_-_edit_-travis-yml_file" class="headerlink" title="Step 3 - edit .travis.yml file"></a>Step 3 - edit .travis.yml file</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">language: node_js</span><br><span class="line">node_js:</span><br><span class="line">    - <span class="string">"0.12"</span></span><br><span class="line"></span><br><span class="line">before_install:</span><br><span class="line">    - npm install -g hexo</span><br><span class="line"></span><br><span class="line">install:</span><br><span class="line">    - npm install</span><br><span class="line"></span><br><span class="line">before_script:</span><br><span class="line">    - git config --global user.name <span class="string">'ruanyl'</span></span><br><span class="line">    - git config --global user.email <span class="string">'ruanyu1@gmail.com'</span></span><br><span class="line"></span><br><span class="line">script:</span><br><span class="line">    - hexo generate</span><br><span class="line"></span><br><span class="line">after_success:</span><br><span class="line">    - mkdir .deploy</span><br><span class="line">    - <span class="built_in">cd</span> .deploy</span><br><span class="line">    - git init</span><br><span class="line">    - git remote add origin <span class="variable">$DEPLOY_REPO</span></span><br><span class="line">    - cp -r ../public/* .</span><br><span class="line">    - git add -A .</span><br><span class="line">    - git commit -m <span class="string">'Site updated'</span></span><br><span class="line">    - git push --force --quiet origin master</span><br></pre></td></tr></table></figure>
+<h3 id="Notice_21_If_you_have_3rd_party_themes_installed"><a href="#Notice_21_If_you_have_3rd_party_themes_installed" class="headerlink" title="Notice! If you have 3rd party themes installed"></a>Notice! If you have 3rd party themes installed</h3><p>You have to add the theme repo as a gitmodule, add a file named: .gitmodules under the root dir of your hexo blog and add:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[submodule <span class="string">"alex"</span>]</span><br><span class="line">    path = themes/alex</span><br><span class="line">    url = https://github.com/ruanyl/hexo-theme-alex.git</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.bigruan.com/2015-03-09-Continuous-Integration-Your-Hexo-Blog-With-TravisCI/" data-id="cik8nopfm000orac9vqu8pgmo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI/">CI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015-03-28-The-Secret-Of-Character-Encoding-And-Character-Set/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          The Secret of Character Encoding and Character Set
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015-03-07-Javascript-Regular_Expression-In-Detail/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Javascript Regular Expression in Detail</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="/" class="logo">Bigruan Blog</a>
+      &copy; 2016 Bigruan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/jquery.scrollLoading.js" type="text/javascript"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

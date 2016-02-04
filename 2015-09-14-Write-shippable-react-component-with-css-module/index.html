@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Write React Component with CSS Module | Bigruan Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The goals:
+The component can be published to npmjs.org
+No need to incldude css manually on page
+Instead of using inline css, now we use Class Name
+
+sample code
+Think about that you made an awesome Rea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Write React Component with CSS Module">
+<meta property="og:url" content="http://blog.bigruan.com/2015-09-14-Write-shippable-react-component-with-css-module/index.html">
+<meta property="og:site_name" content="Bigruan Blog">
+<meta property="og:description" content="The goals:
+The component can be published to npmjs.org
+No need to incldude css manually on page
+Instead of using inline css, now we use Class Name
+
+sample code
+Think about that you made an awesome Rea">
+<meta property="og:updated_time" content="2016-02-04T19:27:47.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Write React Component with CSS Module">
+<meta name="twitter:description" content="The goals:
+The component can be published to npmjs.org
+No need to incldude css manually on page
+Instead of using inline css, now we use Class Name
+
+sample code
+Think about that you made an awesome Rea">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> 
+   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> 
+  <!--<link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">-->
+  <!--<link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>-->
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-61404022-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Bigruan Blog</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about/index.html">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.bigruan.com"></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/ruanyl" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.bigruan.com"></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Others/">Others</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015-12-14-Use-browserify-with-legacy-libs/">Use browserify with legacy libs</a>
+          </li>
+        
+          <li>
+            <a href="/2015-10-06-Continuous-deploy-your-private-repo-from-github/">Continuous Deploy Your Private Repo From Github</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-14-Write-shippable-react-component-with-css-module/">Write React Component with CSS Module</a>
+          </li>
+        
+          <li>
+            <a href="/2015-07-14-A-Git-Workflow-for-Selective-Merge-Deployment/">A Git Workflow for Selective Merge Deployment</a>
+          </li>
+        
+          <li>
+            <a href="/2015-03-28-The-Secret-Of-Character-Encoding-And-Character-Set/">The Secret of Character Encoding and Character Set</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Css/">Css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Css-Html/">Css,Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django-Python-Apache/">Django Python Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encoding/">Encoding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegExp/">RegExp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/">Zsh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browserify/">browserify</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Css-Html/" style="font-size: 10px;">Css,Html</a> <a href="/tags/Django-Python-Apache/" style="font-size: 10px;">Django Python Apache</a> <a href="/tags/Encoding/" style="font-size: 10px;">Encoding</a> <a href="/tags/Git/" style="font-size: 16.67px;">Git</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/Zsh/" style="font-size: 10px;">Zsh</a> <a href="/tags/browserify/" style="font-size: 10px;">browserify</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-Write-shippable-react-component-with-css-module" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-09-14-Write-shippable-react-component-with-css-module/" class="article-date">
+  <time datetime="2015-09-14T21:25:19.000Z" itemprop="datePublished">2015-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JS/">JS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Write React Component with CSS Module
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="The_goals_3A"><a href="#The_goals_3A" class="headerlink" title="The goals:"></a>The goals:</h3><ol>
+<li>The component can be published to npmjs.org</li>
+<li>No need to incldude css manually on page</li>
+<li>Instead of using inline css, now we use Class Name</li>
+</ol>
+<p><a href="https://github.com/ruanyl/react-slim-progress-webpack" target="_blank" rel="external">sample code</a></p>
+<p>Think about that you made an awesome React component,  you don’t just want to use it in your own project but also want to publish
+to <code>npm</code> to share with others. However, awesome ui can not live without css. So you either use a bunch of inline css, or write in
+the README to tell people who use this component to also include an external css file. This is really not a good idea to write
+isolate React Component.</p>
+<p>Here we introduce <a href="http://glenmaddern.com/articles/css-modules" target="_blank" rel="external">CSS Modules</a>. The idea is that you can <code>import</code> a css file as it is
+a normal <code>npm</code> module. In the we will use <a href="https://github.com/gajus/react-css-modules" target="_blank" rel="external">react-css-modules</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'./style.css'</span>;</span><br><span class="line"><span class="keyword">import</span> cssModules <span class="keyword">from</span> <span class="string">'react-css-modules'</span>;</span><br></pre></td></tr></table></figure>
+<p>Then you can use the css class name in your <code>jsx</code> code. for example in our example you will find:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Progress</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// find detailed code from source</span></span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">styleName</span>=<span class="value">'progress'</span> <span class="attribute">style</span>=<span class="value">&#123;progressStyle&#125;</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>You use <code>styleName</code> attribute and the value is just the pure class name you defined in style.css.</p>
+<p>Finally, you will need to wrap the component with CSSModules
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> cssModules(Progress, styles);</span><br></pre></td></tr></table></figure></p>
+<p>Basically that’s it. But in order to make this component works, you will need to do some webpack settings.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">  loader: ExtractTextPlugin.extract(<span class="string">'style'</span>, <span class="string">'css?modules&amp;importLoaders=1&amp;localIdentName=[name]__[local]___[hash:base64:5]'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>find more from the <a href="https://github.com/ruanyl/react-slim-progress-webpack" target="_blank" rel="external">source code</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.bigruan.com/2015-09-14-Write-shippable-react-component-with-css-module/" data-id="cik8nopfc000arac9w9lfy5qj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015-10-06-Continuous-deploy-your-private-repo-from-github/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Continuous Deploy Your Private Repo From Github
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015-07-14-A-Git-Workflow-for-Selective-Merge-Deployment/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">A Git Workflow for Selective Merge Deployment</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="/" class="logo">Bigruan Blog</a>
+      &copy; 2016 Bigruan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/jquery.scrollLoading.js" type="text/javascript"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

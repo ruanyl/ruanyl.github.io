@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Understanding CORS | Bigruan Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="What is CORS?CORS stands for Cross Origin Resouce Sharing. It means that requests for resources from another domain than the domain where the requests are making.
+For security reasons, some HTTP reque">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding CORS">
+<meta property="og:url" content="http://blog.bigruan.com/2015-01-20-understanding-CORS/index.html">
+<meta property="og:site_name" content="Bigruan Blog">
+<meta property="og:description" content="What is CORS?CORS stands for Cross Origin Resouce Sharing. It means that requests for resources from another domain than the domain where the requests are making.
+For security reasons, some HTTP reque">
+<meta property="og:updated_time" content="2016-02-04T19:27:47.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Understanding CORS">
+<meta name="twitter:description" content="What is CORS?CORS stands for Cross Origin Resouce Sharing. It means that requests for resources from another domain than the domain where the requests are making.
+For security reasons, some HTTP reque">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> 
+   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> 
+  <!--<link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">-->
+  <!--<link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>-->
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-61404022-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Bigruan Blog</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about/index.html">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.bigruan.com"></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/ruanyl" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.bigruan.com"></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Others/">Others</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015-12-14-Use-browserify-with-legacy-libs/">Use browserify with legacy libs</a>
+          </li>
+        
+          <li>
+            <a href="/2015-10-06-Continuous-deploy-your-private-repo-from-github/">Continuous Deploy Your Private Repo From Github</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-14-Write-shippable-react-component-with-css-module/">Write React Component with CSS Module</a>
+          </li>
+        
+          <li>
+            <a href="/2015-07-14-A-Git-Workflow-for-Selective-Merge-Deployment/">A Git Workflow for Selective Merge Deployment</a>
+          </li>
+        
+          <li>
+            <a href="/2015-03-28-The-Secret-Of-Character-Encoding-And-Character-Set/">The Secret of Character Encoding and Character Set</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Css/">Css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Css-Html/">Css,Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django-Python-Apache/">Django Python Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encoding/">Encoding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegExp/">RegExp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/">Zsh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browserify/">browserify</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Css-Html/" style="font-size: 10px;">Css,Html</a> <a href="/tags/Django-Python-Apache/" style="font-size: 10px;">Django Python Apache</a> <a href="/tags/Encoding/" style="font-size: 10px;">Encoding</a> <a href="/tags/Git/" style="font-size: 16.67px;">Git</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/Zsh/" style="font-size: 10px;">Zsh</a> <a href="/tags/browserify/" style="font-size: 10px;">browserify</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-understanding-CORS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-01-20-understanding-CORS/" class="article-date">
+  <time datetime="2015-01-20T21:51:22.000Z" itemprop="datePublished">2015-01-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Server/">Server</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Understanding CORS
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="What_is_CORS_3F"><a href="#What_is_CORS_3F" class="headerlink" title="What is CORS?"></a>What is CORS?</h4><p>CORS stands for Cross Origin Resouce Sharing. It means that requests for resources from another domain than the domain where the requests are making.</p>
+<p>For security reasons, some HTTP requests are restricted by <a href="https://developer.mozilla.org/en/Same_origin_policy_for_JavaScript" target="_blank" rel="external">same origin policy</a>. For example an Ajax request, we can not make ajax request from domainA.com to request resource from domainB.com. But this could be painful if you are making a restful API which you host your API in another domain like: api.mydeomain.com.</p>
+<h4 id="When_it_is_used_3F"><a href="#When_it_is_used_3F" class="headerlink" title="When it is used?"></a>When it is used?</h4><p>As described in MDN:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invocations of the XMLHttpRequest API in a cross-site manner, as discussed above.&#10;Web Fonts (for cross-domain font usage in @font-face within CSS)&#10;WebGL textures.&#10;Images drawn to a canvas using drawImage.</span><br></pre></td></tr></table></figure>
+<h4 id="How_it_work_3F"><a href="#How_it_work_3F" class="headerlink" title="How it work?"></a>How it work?</h4><p>Here we talk about two kinds of cross-site request. They are <em>simple requests</em> and <em>preflight request</em>.</p>
+<p>Simple request behaviour:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Client: Hey man, can I take/put some apples from/to your storage?&#10;Server: No. --end</span><br></pre></td></tr></table></figure>
+<p>Preflight request behabiour:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Client: Hey man, can I take/put something from/to your storage?&#10;Server: Yes please. (or No --end)&#10;Client: Cool! Please give me some apples.</span><br></pre></td></tr></table></figure>
+<p>A simple cross-site request is one that(MDN):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Only uses GET, HEAD or POST. If POST is used to send data to the server, the Content-Type of the data sent to the server with the HTTP POST request is one of application/x-www-form-urlencoded, multipart/form-data, or text/plain.&#10;Does not set custom headers with the HTTP Request (such as X-Modified, etc.)</span><br></pre></td></tr></table></figure>
+<p>Otherwise, it is a Preflight request. But, how a simple request actually looks like?</p>
+<p>Take a simple GET request for example, if you open chrome dev tool and you will find something like this from http <em>request</em> headers:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /account/user/ HTTP/1.1&#10;...&#10;...&#10;Origin: http://client.localhost</span><br></pre></td></tr></table></figure>
+<p>It tells the server: I am from <a href="http://client.localhost" target="_blank" rel="external">http://client.localhost</a> and I want to get user infomation(/account/user/).</p>
+<p>Then server <em>response</em>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK&#10;...&#10;...&#10;Access-Control-Allow-Origin: *&#10;Content-Type: application/json&#10;&#10;[json data]</span><br></pre></td></tr></table></figure>
+<p>It tells the client: we allow anyone(as you can see:Access-Control-Allow-Origin: *) came to take user data from here and here is the data. If there is no Access-Control-Allow-Origin provided in response header, the browser will give you an error.</p>
+<p>Preflight request is a little different. Client actually will have two requests. The first request is send with ‘OPTIONS’ method. If success, then make the actuall request. Take a POST request for an example:</p>
+<p>First it makes a OPTIONS request:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS /save/user/ HTTP/1.1&#10;...&#10;...&#10;Origin: http://client.localhost&#10;Access-Control-Request-Method: POST</span><br></pre></td></tr></table></figure>
+<p>It ‘test’ the server to see if it allows the origin domain and request method for the specific route.</p>
+<p>Then the server response:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK&#10;...&#10;...&#10;Access-Control-Allow-Origin: http://client.localhost&#10;Access-Control-Allow-Methods: POST, GET, OPTIONS&#10;Access-Control-Max-Age:3600</span><br></pre></td></tr></table></figure>
+<p>Server says OK, you are allowed and can use POST,GET,OPTIONS methods</p>
+<p>Finally make the actuall POST request:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST /save/user/ HTTP/1.1&#10;...&#10;...&#10;Content-Type:application/json;charset=UTF-8&#10;Origin:http://client.localhost</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.bigruan.com/2015-01-20-understanding-CORS/" data-id="cik8nopfw000wrac9nc9efv9t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015-03-07-Javascript-Regular_Expression-In-Detail/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Javascript Regular Expression in Detail
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014-12-17-How-to-use-git-to-patch-fixes/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How to use git to patch fixes</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="/" class="logo">Bigruan Blog</a>
+      &copy; 2016 Bigruan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/jquery.scrollLoading.js" type="text/javascript"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
